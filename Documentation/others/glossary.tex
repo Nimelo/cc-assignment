@@ -1,0 +1,50 @@
+%Acronyms
+\newacronym{HPC}{HPC}{high-performance computing}
+\newacronym{MPI}{MPI}{Message Passing Interface}
+\newacronym{PDE}{PDE}{partial differential equation}
+\newacronym{CFL}{CFL}{Courant–Friedrichs–Lewy}
+\newacronym{FTBS}{FTBS}{Forward Time Backward Space}
+
+%Dictionary
+\newglossaryentry{super-computer}
+{
+	name={supercomputer},
+	description={machine with high level of computational capacity compared to general-purpose machines}
+}
+\newglossaryentry{advection-equation}
+{
+	name={advection equation},
+	description={partial differential equation that governs the motion of a conserved scalar fields as it is advected by a known velocity vector field \cite{bib:advection}}
+}
+\newglossaryentry{astral}
+{
+	name={ASTRAL},
+	description={is a large independent Linux cluster intended for developing and/or running parallel \gls{MPI} (distributed memory) applications with many processors per job. Astral-2 is a major University-wide research facility \cite{bib:astral}}
+}
+\newglossaryentry{stencil}
+{
+	name={stencil},
+	description={is a geometric arrangement of a nodal group that relate to the point of interest by using a numerical approximation routine \cite{bib:stencil}}
+}
+\newglossaryentry{eigen}
+{
+	name={Eigen},
+	description={is a C++ template library for linear algebra: matrices, vectors, numerical solvers, and related algorithms \cite{bib:eigen}}
+}
+\newglossaryentry{computation-to-communication-ratio}
+{
+	name={computation to communication ratio},
+	description={The ratio of the number of calculations a process does to the total size of the messages it sends \cite{bib:hpc-glossary}}
+}
+
+\newglossaryentry{speed-up}
+{
+	name={speed-up},
+	description={the ratio of the execution time of the parallel algorithm on a single processor to the execution time of the parallel algorithm on $P$ processors \cite{bib:lectures-hpc}}
+}
+
+\newglossaryentry{efficiency}
+{
+	name={efficiency},
+	description={\gls{speed-up} divided by $P$ processors \cite{bib:lectures-hpc}}
+}
