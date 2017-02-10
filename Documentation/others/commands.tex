@@ -1,0 +1,41 @@
+\newenvironment{eqmpage}
+{\par\smallskip\nointerlineskip%
+	\noindent\minipage[t]{\textwidth}}
+{\par\xdef\tpd{\the\prevdepth}\endminipage\par\prevdepth\tpd}
+
+\newenvironment{sminipage}[2][t]
+{\minipage[t]{#2}\small}
+{\endminipage}
+
+\newcommand{\term}[2]
+{
+	\begin{eqmpage}
+		\begin{sminipage}[t]{0.15\textwidth}
+			\textsc{#1:}
+		\end{sminipage}%
+		\begin{sminipage}{0.85\textwidth}
+			#2
+		\end{sminipage}
+	\end{eqmpage}
+}
+
+\newcounter{TestCaseCounter}
+\renewcommand{\theTestCaseCounter}{\number\numexpr\value{TestCaseCounter}+1\relax}
+\newenvironment{testcase}[4]
+{
+	\refstepcounter{TestCaseCounter}
+	\begin{center}
+		\begin{minipage}[t]{0.65\linewidth}
+			\flushleft 
+			\textbf{TEST--CASE--\number\numexpr\value{TestCaseCounter}:} \textsc{#1}
+		\end{minipage}
+		\begin{minipage}[t]{0.25\linewidth}
+			\flushright 
+			\textsc{Risk:} #2
+		\end{minipage}\\[2pt]
+		\hrule
+	\end{center}
+	\term{Dep}{#3}
+	\term{Reqs}{#4 \\} 
+}
+

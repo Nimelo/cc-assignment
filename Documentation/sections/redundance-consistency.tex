@@ -1,1 +1,96 @@
 \section{Redundancy and consistency} \label{s:test-cases:redundancy-and-consistency}
+\begin{testcase}{Crash of master \gls{SQLDBMS}}{Medium}{None}
+	{
+		 	Not specified	
+	}
+	\term{Objective}{To handle unexpected situation.}
+	\term{Inputs}{Crash of master PostgreSQL database.}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item Replace connection with slave (replication) database server
+			\item Check if slave database is operative
+			\item Try to restart/fix master database
+			\item If master database server is unfixable then create a new \gls{RDS} instance, apply latest master db backup and turn on replication from slave server.
+		\end{enumerate}
+	}
+	\term{Output}{Slave database is master database and new instance will be slave server.}
+\end{testcase}
+
+\begin{testcase}{\gls{git} file system crash}{High}{None}
+	{
+		Not specified
+	}
+	\term{Objective}{To handle unexpected situation.}
+	\term{Inputs}{\gls{git} file system crash.}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item Remount file paths to temporary one in every running instance (projects settings will be still saved in \gls{SQLDBMS})
+			\item Fix file system and merge changes by merging directories.
+		\end{enumerate}
+	}
+	\term{Output}{Merged directories of \gls{git} file system.}
+\end{testcase}
+\clearpage
+\begin{testcase}{\gls{redis} crash}{High}{None}
+	{
+		Not specified
+	}
+	\term{Objective}{To handle unexpected situation.}
+	\term{Inputs}{\gls{redis} crash}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item Reconfigure instances to use stand-alone caching solution.
+			\item Try to fix main \gls{redis} component
+			\item Replace stand-alone instances solution to external one again.
+		\end{enumerate}
+	}
+	\term{Output}{Caching system is up and running via external solution.}
+\end{testcase}
+
+\begin{testcase}{Instance crash}{Medium}{None}
+	{
+		Not specified
+	}
+	\term{Objective}{To handle unexpected situation.}
+	\term{Inputs}{Crash of the instance}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item If the instance will get crash than auto-scaling group connected to the load balancer will create a new one automatically.
+		\end{enumerate}
+	}
+	\term{Output}{Replication of the instance.}
+\end{testcase}
+
+\begin{testcase}{Overload of work on web-server}{Medium}{None}
+	{
+		Not specified
+	}
+	\term{Objective}{To handle unexpected situation.}
+	\term{Inputs}{Overload of work on a instance}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item If CPU Utilization will reach $60\%$ for more than $5$ minutes then a new instance will rise and start working up to 4 in maximum.
+		\end{enumerate}
+	}
+	\term{Output}{Automatically adjust of the instances.}
+\end{testcase}
+
+\begin{testcase}{Underload of work on web-server}{Low}{None}
+	{
+		Not specified
+	}
+	\term{Objective}{To handle unexpected situation.}
+	\term{Inputs}{Underload of work on web-server}
+	\term{Steps}
+	{
+		\begin{enumerate}
+			\item If CPU Utilization will be less than $40\%$ for longer than $5$ minutes then auto-scaling group connected to the load balancer will reduce amount of instances by 1 with a limit of 1 running instance.
+		\end{enumerate}
+	}
+	\term{Output}{Automatically adjust of the instances.}
+\end{testcase}

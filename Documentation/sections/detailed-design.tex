@@ -46,30 +46,10 @@
 			\multicolumn{1}{|c|}{\textbf{Security Group}} & \multicolumn{1}{c|}{\textbf{Inbound Rules}} & \multicolumn{1}{c|}{\textbf{Source}} \\ \hline
 			EC - Redis & Custom TCP 6379 & EC2 - GitLab \\ \hline
 			EC2 - GitLab & HTTP TCP 80 & 0.0.0.0/0 \\ \hline
-			EFS - GitLab & NFS TCP 2049 & EC2- GitLab \\ \hline
+			EFS - GitLab & NFS TCP 2049 & EC2 - GitLab \\ \hline
 			LB - GitLab & HTTP TCP 80 & 0.0.0.0/0 \\ \hline
-			RDS - GitLab & PostgreSQL TCP 5432 & EC2- GitLab \\ \hline
+			RDS - GitLab & PostgreSQL TCP 5432 & EC2 - GitLab \\ \hline
 		\end{tabular}
 	\end{table}
 	
 	Load balancer checks ping time every $30$ seconds. If in two consecutive pings time is above 5 sec the instance will be considered as unhealthy and in the end as out of service.
-	
-	Some of the basic emergency situations can be solved with following steps:
-	\begin{itemize}
-		\item
-		{
-			main database crash -- replace connection with slave (replication server);
-		}
-		\item
-		{
-			\gls{git} file system crash -- data recovery using \gls{AWS} tools;
-		}
-		\item
-		{
-			\gls{redis} crash -- reconfigure instances to use stand-alone solutions;
-		}
-		\item
-		{
-			instance crash -- auto resizing group will automatically create a new one.
-		}
-	\end{itemize}
