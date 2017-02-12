@@ -53,3 +53,5 @@
 	\end{table}
 	
 	Load balancer checks ping time every $30$ seconds. If in two consecutive pings time is above 5 sec the instance will be considered as unhealthy and in the end as out of service.
+	
+	All the necessary configuration changes were extracted and are presented in Listening \ref{lst:rb}. There is an information about application url address, configuration of the connection to database, \gls{redis} host name, and mount points to \gls{EFS}. Configuration also disables local PostgreSQL database and \gls{redis}. Mount points are also stored in \emph{fstab} and is presented in Listening \ref{lst:fstab} and are connected to the \gls{gitlab} configuration itself.
